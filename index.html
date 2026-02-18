@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triggr Node | The Hardware Bridge for Modern WMS</title>
+    <meta name="description" content="Triggr Node: The ultimate hardware bridge connecting USB barcode scanners to ONVIF camera protocols for event-triggered video verification in warehouse management.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#FF5733',
+                            charcoal: '#1A1A1B',
+                            light: '#F3F4F6',
+                            white: '#FFFFFF',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "Triggr",
+          "url": "https://triggr.com",
+          "logo": "https://triggr.com/assets/images/logo.png",
+          "sameAs": []
+        },
+        {
+          "@type": "ComputerHardware",
+          "name": "Triggr Node",
+          "description": "Hardware bridge connecting USB Barcode Scanners to ONVIF Camera Protocols for event-triggered video verification.",
+          "manufacturer": {
+            "@type": "Organization",
+            "name": "Triggr"
+          },
+          "image": "https://triggr.com/assets/images/triggr-node-render.jpg"
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        /* Custom Utilities */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-brand-light text-brand-charcoal antialiased selection:bg-brand-orange selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="glass-panel border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20">
+                    <div class="flex-shrink-0 flex items-center gap-2">
+                        <!-- Logo Placeholder -->
+                        <div class="w-10 h-10 bg-brand-orange rounded-lg flex items-center justify-center text-white font-display font-bold text-xl">T</div>
+                        <span class="font-display font-bold text-2xl tracking-tight text-brand-charcoal">Triggr</span>
+                    </div>
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#product" class="text-sm font-medium text-gray-600 hover:text-brand-orange transition-colors">Product</a>
+                        <a href="#concept" class="text-sm font-medium text-gray-600 hover:text-brand-orange transition-colors">Concept</a>
+                        <a href="#solution" class="text-sm font-medium text-gray-600 hover:text-brand-orange transition-colors">Solution</a>
+                        <a href="#contact" class="px-5 py-2.5 text-sm font-medium text-white bg-brand-charcoal hover:bg-brand-orange rounded-full transition-colors shadow-lg hover:shadow-xl">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 z-0 opacity-5">
+            <div class="absolute top-0 right-0 w-1/2 h-full bg-brand-charcoal skew-x-12 translate-x-20"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8 reveal active">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-brand-orange text-xs font-bold uppercase tracking-wider">
+                        <span class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
+                        Now Available
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-display font-bold leading-tight text-brand-charcoal">
+                        The Hardware <br>
+                        <span class="text-brand-orange">Bridge.</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 max-w-lg leading-relaxed">
+                        Seamlessly connect USB barcode scanners to ONVIF camera protocols. 
+                        Enable event-triggered video verification instantly.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <a href="#product" class="px-8 py-4 text-white bg-brand-orange hover:bg-brand-charcoal rounded-full font-medium transition-all shadow-lg hover:shadow-orange-500/30 text-center">
+                            Discover Triggr Node
+                        </a>
+                        <a href="#concept" class="px-8 py-4 text-brand-charcoal bg-white border border-gray-200 hover:border-brand-orange hover:text-brand-orange rounded-full font-medium transition-all shadow-sm hover:shadow-md text-center">
+                            How It Works
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="relative lg:-mr-20 reveal delay-200">
+                    <!-- 3D Render Placeholder -->
+                    <div class="aspect-square rounded-3xl bg-gradient-to-br from-gray-100 to-gray-200 border border-gray-200 relative overflow-hidden shadow-2xl flex items-center justify-center group">
+                        <img src="https://placehold.co/800x800?text=Triggr+Node+3D+Render" 
+                             alt="High-fidelity 3D render of Triggr Node Hardware Bridge" 
+                             class="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-white/50 to-transparent pointer-events-none"></div>
+                    </div>
+                    <!-- Decorative Elements -->
+                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-orange/10 rounded-full blur-3xl"></div>
+                    <div class="absolute top-10 right-10 w-60 h-60 bg-brand-charcoal/5 rounded-full blur-3xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section id="product" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-sm font-bold text-brand-orange uppercase tracking-widest mb-3">The Hardware</h2>
+                <h3 class="text-4xl md:text-5xl font-display font-bold text-brand-charcoal">Triggr Node</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="p-8 rounded-3xl bg-gray-50 hover:bg-white border border-transparent hover:border-gray-200 hover:shadow-xl transition-all duration-300 group reveal">
+                    <div class="w-14 h-14 bg-brand-charcoal text-white rounded-2xl flex items-center justify-center mb-6 text-2xl group-hover:bg-brand-orange transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0113.5 9.375v-4.5z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 6.75h.75v.75h-.75v-.75zM6.75 16.5h.75v.75h-.75v-.75zM16.5 6.75h.75v.75h-.75v-.75zM13.5 13.5h.75v.75h-.75v-.75zM13.5 19.5h.75v.75h-.75v-.75zM19.5 13.5h.75v.75h-.75v-.75zM19.5 19.5h.75v.75h-.75v-.75zM16.5 16.5h.75v.75h-.75v-.75z" />
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Universal Compatibility</h4>
+                    <p class="text-gray-600">Works with any standard USB barcode scanner. No custom drivers or complex setups required.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="p-8 rounded-3xl bg-gray-50 hover:bg-white border border-transparent hover:border-gray-200 hover:shadow-xl transition-all duration-300 group reveal delay-100">
+                    <div class="w-14 h-14 bg-brand-charcoal text-white rounded-2xl flex items-center justify-center mb-6 text-2xl group-hover:bg-brand-orange transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">ONVIF Integration</h4>
+                    <p class="text-gray-600">Translates scan events into ONVIF metadata, instantly bookmarking video footage.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="p-8 rounded-3xl bg-gray-50 hover:bg-white border border-transparent hover:border-gray-200 hover:shadow-xl transition-all duration-300 group reveal delay-200">
+                    <div class="w-14 h-14 bg-brand-charcoal text-white rounded-2xl flex items-center justify-center mb-6 text-2xl group-hover:bg-brand-orange transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">Zero Latency</h4>
+                    <p class="text-gray-600">Real-time processing ensures every scan is captured and synced with the exact video frame.</p>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center reveal">
+                <img src="https://placehold.co/1200x600?text=Hardware+Integration+Diagram" 
+                     alt="Triggr Node Integration Diagram showcasing USB to ONVIF bridge" 
+                     class="rounded-3xl shadow-2xl mx-auto border border-gray-200">
+            </div>
+        </div>
+    </section>
+
+    <!-- The Concept -->
+    <section id="concept" class="py-24 bg-brand-charcoal text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/1a1a1b/333333?text=Abstract+Grid')] opacity-10 bg-cover bg-center"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <h2 class="text-sm font-bold text-brand-orange uppercase tracking-widest mb-3">The Concept</h2>
+                    <h3 class="text-4xl md:text-5xl font-display font-bold mb-6">Event-Triggered Video Verification</h3>
+                    <div class="space-y-6 text-gray-300 text-lg">
+                        <p>
+                            Traditional video surveillance is passive. You record everything and hope you can find what you need later.
+                        </p>
+                        <p>
+                            <storng class="text-white font-bold">Triggr changes the paradigm.</storng>
+                        </p>
+                        <p>
+                            By linking physical actions (scanning a barcode) to digital video streams, we create an indexed, searchable video log of every inventory movement.
+                        </p>
+                    </div>
+                </div>
+                <div class="reveal delay-200">
+                    <div class="relative bg-gray-800 rounded-3xl p-8 border border-gray-700 shadow-2xl">
+                        <!-- Mockup of UI/Concept -->
+                        <div class="flex flex-col gap-4">
+                            <div class="flex items-center gap-3 border-b border-gray-700 pb-4">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                <span class="text-xs text-gray-500 font-mono ml-2">WMS Log Stream</span>
+                            </div>
+                            <div class="font-mono text-sm space-y-3">
+                                <div class="flex gap-4 items-center opacity-50">
+                                    <span class="text-gray-500">10:42:01</span>
+                                    <span class="text-blue-400">SCAN_EVENT</span>
+                                    <span class="text-gray-400">SKU-99281</span>
+                                </div>
+                                <div class="flex gap-4 items-center bg-gray-700/50 p-2 rounded -mx-2 border-l-2 border-brand-orange">
+                                    <span class="text-gray-300">10:42:05</span>
+                                    <span class="text-brand-orange font-bold">TRIGGR_EVENT</span>
+                                    <span class="text-white">Order #1024 Packed</span>
+                                    <span class="text-xs bg-brand-orange/20 text-brand-orange px-2 py-0.5 rounded ml-auto">VIDEO TAGGED</span>
+                                </div>
+                                <div class="flex gap-4 items-center opacity-50">
+                                    <span class="text-gray-500">10:42:08</span>
+                                    <span class="text-blue-400">SCAN_EVENT</span>
+                                    <span class="text-gray-400">SKU-99282</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Solution -->
+    <section id="solution" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center mb-16 reveal">
+                <h2 class="text-sm font-bold text-brand-orange uppercase tracking-widest mb-3">The Solution</h2>
+                <h3 class="text-4xl md:text-5xl font-display font-bold text-brand-charcoal mb-6">Prevent Claim Denials</h3>
+                <p class="text-xl text-gray-600">
+                    Empower your Warehouse Management System (WMS) with irrefutable visual proof.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-10 rounded-3xl shadow-sm border border-gray-100 reveal">
+                    <h4 class="text-2xl font-bold mb-4 text-brand-charcoal">The Problem</h4>
+                    <p class="text-gray-600 mb-6">
+                        Customers claim items are missing or damaged. extensive manual video searches are costly and often inconclusive. Carriers deny claims due to lack of evidence.
+                    </p>
+                    <ul class="space-y-3 text-red-500">
+                        <li class="flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            Lost Revenue
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            Wasted Labor Hours
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            Customer Friction
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-brand-charcoal p-10 rounded-3xl shadow-xl text-white reveal delay-100">
+                    <h4 class="text-2xl font-bold mb-4">The Triggr Fix</h4>
+                    <p class="text-gray-300 mb-6">
+                        Every scan is a timestamped video bookmark. Instant retrieval of the exact moment an item was packed and sealed.
+                    </p>
+                    <ul class="space-y-3 text-brand-orange">
+                        <li class="flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Instant Dispute Resolution
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            100% Visual Accountability
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            Seamless WMS Integration
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 bg-brand-orange rounded-lg flex items-center justify-center text-white font-display font-bold text-lg">T</div>
+                        <span class="font-display font-bold text-xl text-brand-charcoal">Triggr</span>
+                    </div>
+                    <p class="text-gray-500 max-w-xs">
+                        Connecting the physical to the digital. The Hardware Bridge for modern logistics.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-brand-charcoal mb-4">Product</h5>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-brand-orange">Features</a></li>
+                        <li><a href="#" class="hover:text-brand-orange">Integration</a></li>
+                        <li><a href="#" class="hover:text-brand-orange">Specs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold text-brand-charcoal mb-4">Company</h5>
+                    <ul class="space-y-2 text-sm text-gray-500">
+                        <li><a href="#" class="hover:text-brand-orange">About</a></li>
+                        <li><a href="#" class="hover:text-brand-orange">Contact</a></li>
+                        <li><a href="#" class="hover:text-brand-orange">Privacy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-100 mt-12 pt-8 text-center text-sm text-gray-400">
+                &copy; 2024 Triggr, Inc. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
