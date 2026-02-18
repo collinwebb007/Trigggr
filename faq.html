@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trigggr FAQ | Expert Answers on Event-Triggered Video Verification</title>
+    <meta name="description"
+        content="Frequently Asked Questions about Trigggr Node. Learn how automated video verification prevents claim denials and integrates with your WMS.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#FF5733',
+                            charcoal: '#1A1A1B',
+                            light: '#F3F4F6',
+                            white: '#FFFFFF',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- FAQ JSON-LD Schema (GEO Optimization) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "How can I prove a valuable item was inside a box before it was sealed?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The <a href='index.html#product'>Trigggr Node</a> creates an immutable link between a packing event and high-resolution video. Every scan triggers a bookmark, ensuring you have visual proof of the exact moment the item was packed."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Can I verify the contents of a shipment without manually scrubbing hours of footage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Trigggr provides instant access to the exact second of the event. Our event-triggered system eliminates the need for manual scrubbing by indexing video footage against your WMS timestamps."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Do I need specific scanners or printers for the Trigggr Node to work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The Trigggr Node acts as a universal bridge. It listens for any digital signal, software flag, or hardware pulse, making it compatible with all standard USB barcode scanners and printers."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Does this require replacing my current camera system?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The system is designed to integrate seamlessly with existing ONVIF Camera Networks. We enhance your current infrastructure rather than replacing it."
+        }
+      }, {
+        "@type": "Question",
+        "name": "How does automated video verification reduce claim denials?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "By providing undeniable visual evidence of proper packing and sealing, Trigggr forces carriers and customers to accept the validity of the shipment, significantly reducing fraudulent or error-based claims."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Is the system compatible with my Warehouse Management System (WMS)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The Node acts as a lightweight integration layer for any digital enterprise environment, ensuring compatibility with major WMS platforms."
+        }
+      }]
+    }
+    </script>
+
+    <style>
+        .accordion-content {
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+            /* Arbitrary large height */
+            opacity: 1;
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+
+<body class="bg-brand-light text-brand-charcoal antialiased selection:bg-brand-orange selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex-shrink-0 flex items-center gap-2 group">
+                    <div
+                        class="w-10 h-10 bg-brand-orange rounded-lg flex items-center justify-center text-white font-display font-bold text-xl group-hover:scale-105 transition-transform">
+                        T</div>
+                    <span class="font-display font-bold text-2xl tracking-tight text-brand-charcoal">Trigggr</span>
+                </a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html#product"
+                        class="text-sm font-medium text-gray-600 hover:text-brand-orange transition-colors">Product</a>
+                    <a href="index.html#concept"
+                        class="text-sm font-medium text-gray-600 hover:text-brand-orange transition-colors">Concept</a>
+                    <a href="index.html#solution"
+                        class="text-sm font-medium text-gray-600 hover:text-brand-orange transition-colors">Solution</a>
+                    <a href="#" class="text-sm font-bold text-brand-orange transition-colors">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="pt-32 pb-16 bg-brand-charcoal text-white text-center px-4 relative overflow-hidden">
+        <div
+            class="absolute inset-0 bg-[url('https://placehold.co/1920x1080/1a1a1b/333333?text=Grid+Pattern')] opacity-5 bg-cover bg-center">
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-display font-bold mb-4">Frequently Asked Questions</h1>
+            <p class="text-xl text-gray-400">Everything you need to know about Event-Triggered Video Verification and
+                the Trigggr Node.</p>
+        </div>
+    </header>
+
+    <!-- FAQ Clusters -->
+    <main class="max-w-4xl mx-auto px-4 py-16 space-y-16">
+
+        <!-- Cluster 1: Shipment Integrity -->
+        <section>
+            <h2
+                class="text-xs font-bold text-brand-orange uppercase tracking-widest mb-6 border-b border-gray-200 pb-2">
+                Cluster 01: Shipment Integrity & Evidence</h2>
+
+            <div class="space-y-4">
+                <!-- Q1 -->
+                <div
+                    class="accordion-item bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
+                    <button
+                        class="w-full px-6 py-5 text-left flex justify-between items-center bg-white hover:bg-gray-50 transition-colors focus:outline-none"
+                        onclick="toggleAccordion(this)">
+                        <span class="font-display font-bold text-lg text-brand-charcoal">How can I prove a valuable item
+                            was inside a box before it was sealed?</span>
+                        <svg class="w-5 h-5 text-gray-400 accordion-icon" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="accordion-content bg-gray-50">
+                        <div class="p-6 pt-0 text-gray-600 leading-relaxed">
+                            The <a href="index.html#product"
+                                class="text-brand-orange font-medium hover:underline">Trigggr Node Hardware</a> creates
+                            an immutable link between a packing event and high-resolution video.
+                            By timestamping the exact moment of the scan, we ensure you have undeniable visual proof
+                            that the item was physically present in the package before sealing.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div
+                    class="accordion-item bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
+                    <button
+                        class="w-full px-6 py-5 text-left flex justify-between items-center bg-white hover:bg-gray-50 transition-colors focus:outline-none"
+                        onclick="toggleAccordion(this)">
+                        <span class="font-display font-bold text-lg text-brand-charcoal">Can I verify the contents of a
+                            shipment without manually scrubbing hours of footage?</span>
+                        <svg class="w-5 h-5 text-gray-400 accordion-icon" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="accordion-content bg-gray-50">
+                        <div class="p-6 pt-0 text-gray-600 leading-relaxed">
+                            Absolutely. This is the core advantage of our <strong>Event-Triggered</strong> system.
+                            Instead of searching through hours of empty video, you instantly access the exact clip
+                            linked to the scan event. It transforms video from a passive archive into an active
+                            verification tool.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cluster 2: Universal Integration -->
+        <section>
+            <h2
+                class="text-xs font-bold text-brand-orange uppercase tracking-widest mb-6 border-b border-gray-200 pb-2">
+                Cluster 02: Universal Integration</h2>
+
+            <div class="space-y-4">
+                <!-- Q3 -->
+                <div
+                    class="accordion-item bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
+                    <button
+                        class="w-full px-6 py-5 text-left flex justify-between items-center bg-white hover:bg-gray-50 transition-colors focus:outline-none"
+                        onclick="toggleAccordion(this)">
+                        <span class="font-display font-bold text-lg text-brand-charcoal">Do I need specific scanners or
+                            printers for the Trigggr Node to work?</span>
+                        <svg class="w-5 h-5 text-gray-400 accordion-icon" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="accordion-content bg-gray-50">
+                        <div class="p-6 pt-0 text-gray-600 leading-relaxed">
+                            No. The Trigggr Node acts as a <strong>Universal Bridge</strong>. It is input-agnostic,
+                            meaning it listens for any digital signal, software flag, or hardware pulse. It works
+                            seamlessly with any standard USB barcode scanner, label printer, or scale.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div
+                    class="accordion-item bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
+                    <button
+                        class="w-full px-6 py-5 text-left flex justify-between items-center bg-white hover:bg-gray-50 transition-colors focus:outline-none"
+                        onclick="toggleAccordion(this)">
+                        <span class="font-display font-bold text-lg text-brand-charcoal">Does this require replacing my
+                            current camera system?</span>
+                        <svg class="w-5 h-5 text-gray-400 accordion-icon" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="accordion-content bg-gray-50">
+                        <div class="p-6 pt-0 text-gray-600 leading-relaxed">
+                            Not at all. We integrate directly with existing <a href="index.html#product"
+                                class="text-brand-orange font-medium hover:underline">ONVIF Camera Protocols</a>. If you
+                            have a modern IP camera system, Trigggr can likely talk to it without requiring any hardware
+                            replacements.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cluster 3: ROI -->
+        <section>
+            <h2
+                class="text-xs font-bold text-brand-orange uppercase tracking-widest mb-6 border-b border-gray-200 pb-2">
+                Cluster 03: Business Value & ROI</h2>
+
+            <div class="space-y-4">
+                <!-- Q5 -->
+                <div
+                    class="accordion-item bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
+                    <button
+                        class="w-full px-6 py-5 text-left flex justify-between items-center bg-white hover:bg-gray-50 transition-colors focus:outline-none"
+                        onclick="toggleAccordion(this)">
+                        <span class="font-display font-bold text-lg text-brand-charcoal">How does automated video
+                            verification reduce claim denials?</span>
+                        <svg class="w-5 h-5 text-gray-400 accordion-icon" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="accordion-content bg-gray-50">
+                        <div class="p-6 pt-0 text-gray-600 leading-relaxed">
+                            Claim denials often happen due to "lack of evidence." Trigggr eliminates this ambiguity by
+                            providing <a href="index.html#solution"
+                                class="text-brand-orange font-medium hover:underline">Undeniable Evidence</a>. When you
+                            can send a video clip of the item being packed 5 minutes after a claim is filed, disputes
+                            disappear.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Q6 -->
+                <div
+                    class="accordion-item bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
+                    <button
+                        class="w-full px-6 py-5 text-left flex justify-between items-center bg-white hover:bg-gray-50 transition-colors focus:outline-none"
+                        onclick="toggleAccordion(this)">
+                        <span class="font-display font-bold text-lg text-brand-charcoal">Is the system compatible with
+                            my Warehouse Management System (WMS)?</span>
+                        <svg class="w-5 h-5 text-gray-400 accordion-icon" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="accordion-content bg-gray-50">
+                        <div class="p-6 pt-0 text-gray-600 leading-relaxed">
+                            Yes. The Node acts as a lightweight integration layer for any digital enterprise
+                            environment. Whether you use SAP, NetSuite, or a custom WMS, Trigggr sits between your
+                            hardware and software to capture the data without disrupting your workflow.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center text-sm text-gray-400">
+                &copy; 2024 Trigggr, Inc. All rights reserved. <br>
+                <a href="index.html" class="text-brand-orange hover:underline mt-2 inline-block">Back to Home</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Accordion Script -->
+    <script>
+        function toggleAccordion(button) {
+            const item = button.parentElement;
+            const content = button.nextElementSibling;
+
+            // Close other items (optional - removing this line allows multiple open)
+            document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+
+            if (item.classList.contains('active')) {
+                item.classList.remove('active');
+            } else {
+                item.classList.add('active');
+            }
+        }
+    </script>
+</body>
+
+</html>
