@@ -93,6 +93,16 @@
             transform: translateY(0);
         }
     </style>
+
+    <!-- Three.js Import Map -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/"
+        }
+    }
+    </script>
 </head>
 
 <body class="bg-brand-light text-brand-charcoal antialiased selection:bg-brand-orange selection:text-white">
@@ -103,13 +113,11 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-20">
                     <div class="flex-shrink-0 flex items-center gap-2">
-                        <!-- Logo Placeholder -->
-                        <div
-                            class="w-10 h-10 bg-brand-orange rounded-lg flex items-center justify-center text-white font-display font-bold text-xl">
-                            T</div>
+                        <!-- Logo -->
+                        <img src="assets/images/logo.svg" alt="Trigggr Logo" class="w-10 h-10">
                         <span class="font-display font-bold text-2xl tracking-tight text-brand-charcoal">Trigggr</span>
                     </div>
-                    <div class="hidden md:flex space-x-8">
+                    <div class="hidden md:flex items-center space-x-8">
                         <a href="#product"
                             class="text-sm font-medium text-gray-600 hover:text-brand-orange transition-colors">Product</a>
                         <a href="#concept"
@@ -118,6 +126,14 @@
                             class="text-sm font-medium text-gray-600 hover:text-brand-orange transition-colors">Solution</a>
                         <a href="faq.html"
                             class="text-sm font-medium text-gray-600 hover:text-brand-orange transition-colors">FAQ</a>
+                        <a href="dashboard.html"
+                            class="text-sm font-medium text-gray-600 hover:text-brand-orange transition-colors flex items-center gap-1">
+                            Dashboard
+                            <svg class="w-3.5 h-3.5 mb-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        </a>
                         <a href="#contact"
                             class="px-5 py-2.5 text-sm font-medium text-white bg-brand-charcoal hover:bg-brand-orange rounded-full transition-colors shadow-lg hover:shadow-xl">Get
                             Started</a>
@@ -164,16 +180,37 @@
                 </div>
 
                 <div class="relative lg:-mr-20 reveal delay-200">
-                    <!-- 3D Render Placeholder -->
+                    <!-- 3D Render Interactive Viewer -->
+                    <div id="stl-viewer"
+                        class="aspect-square rounded-3xl bg-white/50 border border-gray-200 shadow-xl relative overflow-hidden flex items-center justify-center group cursor-grab active:cursor-grabbing backdrop-blur-sm z-10">
+                        <div
+                            class="absolute inset-0 flex items-center justify-center text-gray-500 font-medium z-0 pointer-events-none">
+                            <div class="flex flex-col items-center gap-2">
+                                <svg class="w-8 h-8 animate-spin text-brand-orange" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                        stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                    </path>
+                                </svg>
+                                <span>Loading 3D Model...</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Interaction Hint -->
                     <div
-                        class="aspect-square rounded-3xl bg-transparent relative overflow-hidden flex items-center justify-center group">
-                        <img src="assets/images/triggr-hero-render.png"
-                            alt="Trigggr Node: Sleek Hardware Bridge for Event-Triggered Video Verification."
-                            class="w-full h-full object-contain drop-shadow-2xl group-hover:scale-105 transition-transform duration-700">
+                        class="absolute bottom-4 right-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-full shadow border border-gray-100 text-xs font-medium text-gray-600 flex items-center gap-2 z-20 pointer-events-none">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                        </svg>
+                        Drag to rotate
                     </div>
                     <!-- Decorative Elements -->
-                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-orange/10 rounded-full blur-3xl"></div>
-                    <div class="absolute top-10 right-10 w-60 h-60 bg-brand-charcoal/5 rounded-full blur-3xl"></div>
+                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-orange/10 rounded-full blur-3xl z-0">
+                    </div>
+                    <div class="absolute top-10 right-10 w-60 h-60 bg-brand-charcoal/5 rounded-full blur-3xl z-0"></div>
                 </div>
             </div>
         </div>
@@ -395,9 +432,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="col-span-1 md:col-span-2">
                     <div class="flex items-center gap-2 mb-4">
-                        <div
-                            class="w-8 h-8 bg-brand-orange rounded-lg flex items-center justify-center text-white font-display font-bold text-lg">
-                            T</div>
+                        <img src="assets/images/logo.svg" alt="Trigggr Logo" class="w-8 h-8">
                         <span class="font-display font-bold text-xl text-brand-charcoal">Trigggr</span>
                     </div>
                     <p class="text-gray-500 max-w-xs">
@@ -429,6 +464,116 @@
 
     <!-- Scripts -->
     <script src="script.js"></script>
+
+    <!-- Three.js 3D Viewer Script -->
+    <script type="module">
+        import * as THREE from 'three';
+        import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        const container = document.getElementById('stl-viewer');
+        if (container) {
+            const scene = new THREE.Scene();
+
+            const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.set(3, 3, 3);
+
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.domElement.style.outline = 'none';
+
+            const controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = 2.0;
+            controls.enablePan = false;
+            controls.minDistance = 1;
+            controls.maxDistance = 500;
+
+            // Lighting setup for sleek metallic look
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+            scene.add(ambientLight);
+
+            const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
+            dirLight.position.set(10, 20, 10);
+            scene.add(dirLight);
+
+            const backLight = new THREE.DirectionalLight(0xffffff, 0.5);
+            backLight.position.set(-10, -10, -10);
+            scene.add(backLight);
+
+            // Load the user's STL model
+            const loader = new STLLoader();
+            loader.load('assets/models/trigggr-node.stl', (geometry) => {
+                // Clear loading state and inject canvas
+                container.innerHTML = '';
+                container.appendChild(renderer.domElement);
+
+                // Premium dark metallic material matches brand-charcoal
+                const material = new THREE.MeshStandardMaterial({
+                    color: 0x1A1A1B,
+                    roughness: 0.3,
+                    metalness: 0.7,
+                });
+
+                const mesh = new THREE.Mesh(geometry, material);
+
+                // Ensure proper normals for smooth shading
+                geometry.computeVertexNormals();
+
+                // Auto-center the model geometry
+                geometry.computeBoundingBox();
+                const box = geometry.boundingBox;
+                const center = box.getCenter(new THREE.Vector3());
+                geometry.translate(-center.x, -center.y, -center.z);
+
+                // Auto-distance the camera to fit object properly without clipping
+                const size = box.getSize(new THREE.Vector3());
+                const maxDim = Math.max(size.x, size.y, size.z);
+
+                // Normalize the model size to `10` to avoid clipping issues
+                const scale = 10 / maxDim;
+                mesh.scale.set(scale, scale, scale);
+
+                // Set camera position relative to normalized size
+                camera.position.set(8, 6, 12);
+                camera.lookAt(0, 0, 0);
+                controls.target.set(0, 0, 0);
+                controls.update();
+
+                // Safety fix for far plane
+                camera.near = 0.1;
+                camera.far = 1000;
+                camera.updateProjectionMatrix();
+
+                scene.add(mesh);
+            },
+                undefined,
+                (error) => {
+                    console.warn('STL file missing. Put trigggr-node.stl in assets/models/');
+                    container.innerHTML = '<div class="absolute inset-0 flex flex-col items-center justify-center text-gray-500 font-medium text-center bg-gray-50 m-4 rounded-2xl border-2 border-dashed border-gray-300 pointer-events-auto"><svg class="w-10 h-10 text-gray-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg><p class="text-sm">Renderer Ready.<br>Place your file at:</p><code class="text-brand-orange bg-orange-50 px-2 py-1 rounded mt-2 inline-block shadow-sm">assets/models/trigggr-node.stl</code></div>';
+                });
+
+            // Handle browser resize
+            window.addEventListener('resize', () => {
+                if (container.clientWidth > 0) {
+                    camera.aspect = container.clientWidth / container.clientHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(container.clientWidth, container.clientHeight);
+                }
+            });
+
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                controls.update();
+                renderer.render(scene, camera);
+            }
+            animate();
+        }
+    </script>
 </body>
 
 </html>
