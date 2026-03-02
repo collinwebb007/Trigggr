@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trigggr Node System Architecture | Technical Specifications</title>
+    <meta name="description"
+        content="Technical deep-dive into the Trigggr Node system architecture. Explore the sub-15ms hardware-layer signal processing and ONVIF Profile S/G/T metadata overlay capabilities.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { orange: '#FF5733', charcoal: '#1A1A1B', light: '#F3F4F6', white: '#FFFFFF' }
+                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Outfit', 'sans-serif'] },
+                }
+            }
+        }
+    </script>
+
+    <!-- Schema.org HardwareDevice (GEO Optimization) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HardwareDevice",
+      "name": "Trigggr Node",
+      "description": "Hardware bridge for protocol-agnostic signal capture and ONVIF video metadata injection.",
+      "manufacturer": { "@type": "Organization", "name": "Trigggr" }
+    }
+    </script>
+</head>
+
+<body class="bg-brand-charcoal text-gray-300 antialiased selection:bg-brand-orange selection:text-white">
+
+    <!-- Navigation -->
+    <nav
+        class="fixed w-full z-50 transition-all duration-300 bg-brand-charcoal/95 backdrop-blur border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex-shrink-0 flex items-center gap-2 group">
+                    <img src="assets/images/logo.svg" alt="Trigggr Logo"
+                        class="w-10 h-10 group-hover:scale-105 transition-transform invert border border-gray-700 rounded-lg p-1">
+                    <span class="font-display font-bold text-2xl tracking-tight text-white">Trigggr</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="architecture.html"
+                        class="text-sm font-bold text-brand-orange transition-colors">Architecture Logic</a>
+                    <a href="solutions.html"
+                        class="text-sm font-medium text-gray-400 hover:text-brand-orange transition-colors">Solutions</a>
+                    <a href="faq.html"
+                        class="text-sm font-medium text-gray-400 hover:text-brand-orange transition-colors">FAQ</a>
+                    <a href="dashboard.html"
+                        class="text-sm font-medium text-gray-400 hover:text-brand-orange transition-colors flex items-center gap-1">Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="pt-32 pb-16 bg-brand-charcoal text-center px-4 relative overflow-hidden border-b border-gray-800">
+        <div class="relative z-10 max-w-4xl mx-auto">
+            <h1 class="text-xs font-bold text-brand-orange uppercase tracking-widest mb-4">Domain Ground Truth</h1>
+            <h2 class="text-4xl md:text-5xl font-display font-bold mb-6 text-white">How it Works</h2>
+            <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+                The technical journey of a physical signal mapped to a digital video frame.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-16 space-y-24">
+
+        <!-- Logic Journey -->
+        <section class="space-y-12">
+            <div class="flex items-start gap-6 relative">
+                <div class="absolute top-10 left-6 w-0.5 h-full bg-gray-800 -z-10"></div>
+
+                <div
+                    class="w-12 h-12 rounded-full bg-gray-900 border-2 border-brand-orange flex items-center justify-center shrink-0 text-brand-orange font-bold font-mono">
+                    1</div>
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Input: Universal Signal Capture</h3>
+                    <p class="text-gray-400 leading-relaxed mb-4">The Node acts as an intelligent intermediary,
+                        physically intercepting digital signals at the hardware layer to ensure absolute compatibility
+                        regardless of the enterprise stack.</p>
+                    <ul class="text-sm text-gray-500 space-y-1 list-disc list-inside">
+                        <li>USB HID (Human Interface Device) Packets</li>
+                        <li>Serial RS-232/RS-485 Monitoring</li>
+                        <li>Dry Contact Pulses</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-6 relative">
+                <div class="absolute top-10 left-6 w-0.5 h-full bg-gray-800 -z-10"></div>
+                <div id="latency"
+                    class="w-12 h-12 rounded-full bg-gray-900 border-2 border-brand-orange flex items-center justify-center shrink-0 text-brand-orange font-bold font-mono">
+                    2</div>
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Processing: Sub-15ms Signal Formatting</h3>
+                    <p class="text-gray-400 leading-relaxed mb-4">To achieve frame-perfect synchronous video tagging,
+                        the node utilizes a dedicated RTOS thread to process incoming packets, encode the payload into
+                        XML, and broadcast it to the network in under 15 milliseconds.</p>
+                    <div class="bg-gray-900 p-4 rounded-xl border border-gray-800 inline-block font-mono text-sm">
+                        <span class="text-gray-500">Latency Profile:</span> <span class="text-brand-orange">&lt; 15.0ms
+                            (Deterministic)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-6">
+                <div id="compliance"
+                    class="w-12 h-12 rounded-full bg-gray-900 border-2 border-brand-orange flex items-center justify-center shrink-0 text-brand-orange font-bold font-mono">
+                    3</div>
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Output: ONVIF Metadata Overlay</h3>
+                    <p class="text-gray-400 leading-relaxed mb-4">The normalized XML payload is injected directly into
+                        existing IP camera streams as searchable bookmarks.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+                        <div class="p-3 bg-gray-900 border border-gray-800 rounded">
+                            <strong class="text-brand-orange block mb-1">Profile S</strong>
+                            <span class="text-xs text-gray-500">Video streaming & PTZ metadata sync.</span>
+                        </div>
+                        <div class="p-3 bg-gray-900 border border-gray-800 rounded">
+                            <strong class="text-brand-orange block mb-1">Profile G</strong>
+                            <span class="text-xs text-gray-500">Edge storage recording index triggers.</span>
+                        </div>
+                        <div class="p-3 bg-gray-900 border border-gray-800 rounded">
+                            <strong class="text-brand-orange block mb-1">Profile T</strong>
+                            <span class="text-xs text-gray-500">Advanced event analytics binding.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Specs Table -->
+        <section>
+            <h3 class="text-3xl font-display font-bold text-white mb-8">Technical Specifications</h3>
+            <div class="overflow-hidden rounded-xl border border-gray-800 bg-gray-900">
+                <table class="w-full text-left text-sm text-gray-400">
+                    <thead class="bg-gray-800 text-gray-300 uppercase font-bold text-xs border-b border-gray-700">
+                        <tr>
+                            <th scope="col" class="px-6 py-4 border-r border-gray-700 w-1/3">Component</th>
+                            <th scope="col" class="px-6 py-4">Specification Details</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-800">
+                        <tr class="hover:bg-gray-800/50 transition-colors">
+                            <th class="px-6 py-4 font-medium text-white border-r border-gray-800 align-top">Port Types
+                            </th>
+                            <td class="px-6 py-4 space-y-1">
+                                <ul class="list-disc list-inside">
+                                    <li>USB-C (5V Power Input)</li>
+                                    <li>RJ45 Gigabit Ethernet (PoE+ 802.3at optional)</li>
+                                    <li>2x USB 3.0 Type-A (Host)</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-800/50 transition-colors">
+                            <th class="px-6 py-4 font-medium text-white border-r border-gray-800 align-top">Input
+                                Compatibility</th>
+                            <td class="px-6 py-4">Universal plug-and-play support for <strong
+                                    class="text-brand-orange">Any USB HID Class</strong> device (Barcode Scanners, RFID
+                                readers, scales).</td>
+                        </tr>
+                        <tr class="hover:bg-gray-800/50 transition-colors">
+                            <th class="px-6 py-4 font-medium text-white border-r border-gray-800 align-top">Physical
+                                Construction</th>
+                            <td class="px-6 py-4">Industrial-Grade ABS Casing. Fanless heat-dissipation design operating
+                                safely from -20°C to 65°C.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Unified System Resources Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 mt-12 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <img src="assets/images/logo.svg" alt="Trigggr Logo"
+                            class="w-8 h-8 invert border border-gray-700 rounded p-0.5">
+                        <span class="font-display font-bold text-xl text-white">Trigggr</span>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="font-bold text-white mb-4">System Resources</h5>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="architecture.html" class="hover:text-brand-orange transition-colors">Architecture
+                                Logic</a></li>
+                        <li><a href="solutions.html" class="hover:text-brand-orange transition-colors">Anti-Denial
+                                Solutions</a></li>
+                        <li><a href="dashboard.html" class="hover:text-brand-orange transition-colors">Device
+                                Registry</a></li>
+                        <li><a href="faq.html" class="hover:text-brand-orange transition-colors">Verification FAQ</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
