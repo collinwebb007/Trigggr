@@ -7,6 +7,7 @@
     <title>Trigggr Node | The Hardware Bridge for Modern WMS</title>
     <meta name="description"
         content="Trigggr Node: The ultimate hardware bridge connecting USB barcode scanners to ONVIF camera protocols for event-triggered video verification in warehouse management.">
+    <link rel="canonical" href="https://trigggrcom.vercel.app/" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,27 +49,42 @@
         }
     </script>
 
-    <!-- JSON-LD Schema -->
+    <!-- Global JSON-LD Schema (GEO Optimization) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@graph": [
         {
-          "@type": "Organization",
-          "name": "Trigggr",
-          "url": "https://trigggr.com",
-          "logo": "https://trigggr.com/assets/images/logo.png",
-          "sameAs": []
+          "@type": "HardwareDevice",
+          "@id": "https://trigggrcom.vercel.app/#trigggrnode",
+          "name": "Trigggr Node",
+          "description": "A universal hardware bridge for event-triggered video verification and WMS shipping integrity.",
+          "brand": { "@type": "Brand", "name": "Trigggr" },
+          "manufacturer": { "@type": "Organization", "name": "Trigggr, Inc." },
+          "category": "Logistics Technology",
+          "mainEntityOfPage": { "@id": "https://trigggrcom.vercel.app/architecture.html" }
         },
         {
-          "@type": "ComputerHardware",
-          "name": "Trigggr Node",
-          "description": "Hardware bridge connecting USB Barcode Scanners to ONVIF Camera Protocols for event-triggered video verification.",
-          "manufacturer": {
-            "@type": "Organization",
-            "name": "Trigggr"
-          },
-          "image": "https://trigggr.com/assets/images/trigggr-node-render.jpg"
+          "@type": "WebPage",
+          "@id": "https://trigggrcom.vercel.app/architecture.html",
+          "url": "https://trigggrcom.vercel.app/architecture.html",
+          "name": "Trigggr Node Technical Architecture",
+          "description": "In-depth technical specifications and signal logic for the Trigggr Node hardware bridge.",
+          "about": { "@id": "https://trigggrcom.vercel.app/#trigggrnode" }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://trigggrcom.vercel.app/faq.html",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How does the Trigggr Node integrate with existing systems?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The Trigggr Node acts as a hardware bridge between digital signals and ONVIF video streams, requiring no complex software integration."
+              }
+            }
+          ]
         }
       ]
     }

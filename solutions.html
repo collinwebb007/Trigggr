@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trigggr Solutions | Prevent Claim Denials</title>
+    <title>Trigggr Node Solutions | Prevent Claim Denials</title>
     <meta name="description"
-        content="Trigggr Solutions: Prevent missing item claims and shipping disputes in your Warehouse Management System with irrefutable video proof.">
+        content="Trigggr Node Solutions: Prevent missing item claims and shipping disputes in your Warehouse Management System with irrefutable video proof.">
+    <link rel="canonical" href="https://trigggrcom.vercel.app/solutions.html" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,14 +32,44 @@
         }
     </script>
 
-    <!-- Schema.org SoftwareApplication (GEO Optimization) -->
+    <!-- Global JSON-LD Schema (GEO Optimization) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Trigggr Anti-Denial Workflow",
-      "applicationCategory": "BusinessApplication",
-      "description": "Video verification workflow ensuring 100% visual accountability in logistics."
+      "@graph": [
+        {
+          "@type": "HardwareDevice",
+          "@id": "https://trigggrcom.vercel.app/#trigggrnode",
+          "name": "Trigggr Node",
+          "description": "A universal hardware bridge for event-triggered video verification and WMS shipping integrity.",
+          "brand": { "@type": "Brand", "name": "Trigggr" },
+          "manufacturer": { "@type": "Organization", "name": "Trigggr, Inc." },
+          "category": "Logistics Technology",
+          "mainEntityOfPage": { "@id": "https://trigggrcom.vercel.app/architecture.html" }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://trigggrcom.vercel.app/architecture.html",
+          "url": "https://trigggrcom.vercel.app/architecture.html",
+          "name": "Trigggr Node Technical Architecture",
+          "description": "In-depth technical specifications and signal logic for the Trigggr Node hardware bridge.",
+          "about": { "@id": "https://trigggrcom.vercel.app/#trigggrnode" }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://trigggrcom.vercel.app/faq.html",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How does the Trigggr Node integrate with existing systems?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The Trigggr Node acts as a hardware bridge between digital signals and ONVIF video streams, requiring no complex software integration."
+              }
+            }
+          ]
+        }
+      ]
     }
     </script>
 </head>
