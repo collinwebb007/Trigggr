@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth bg-brand-charcoal">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buy Trigggr Node | The Hardware Bridge for Modern WMS</title>
-    <meta name="description"
-        content="Purchase the Trigggr Node hardware bridge for event-triggered video verification in warehouse management.">
-    <link rel="canonical" href="https://trigggrcom.vercel.app/product.html" />
+    <title>Trigggr Node | Hardware Architecture</title>
+    <meta name="description" content="Cinematic scroll-triggered view of the Trigggr Node hardware.">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,15 +32,6 @@
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         display: ['Outfit', 'sans-serif'],
-                    },
-                    animation: {
-                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-                    },
-                    keyframes: {
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        }
                     }
                 }
             }
@@ -50,216 +39,234 @@
     </script>
 
     <style>
-        /* Custom Utilities */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(26, 26, 27, 0.85);
+            /* brand-charcoal transparent */
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        /* Utility to force logo to white if it is black SVG */
+        .logo-white {
+            filter: brightness(0) invert(1);
         }
     </style>
 </head>
 
-<body class="bg-brand-light text-brand-charcoal antialiased selection:bg-brand-orange selection:text-white">
+<body class="bg-brand-charcoal text-white antialiased selection:bg-brand-orange selection:text-white">
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
-        <div class="glass-panel border-b border-gray-200">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between items-center h-20">
-                    <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer"
-                        onclick="window.location.href='index.html'">
-                        <!-- Logo -->
-                        <img src="assets/images/logo.svg" alt="Trigggr Logo" class="w-10 h-10">
-                        <span class="font-display font-bold text-2xl tracking-tight text-brand-charcoal">Trigggr</span>
-                    </div>
-                    <div class="hidden md:flex items-center space-x-8">
-                        <a href="architecture.html"
-                            class="text-sm font-medium text-gray-600 hover:text-brand-orange transition-colors">Architecture
-                            Logic</a>
-                        <a href="solutions.html"
-                            class="text-sm font-medium text-gray-600 hover:text-brand-orange transition-colors">Solutions</a>
-                        <a href="faq.html"
-                            class="text-sm font-medium text-gray-600 hover:text-brand-orange transition-colors">FAQ</a>
-                        <a href="dashboard.html"
-                            class="text-sm font-medium text-gray-600 hover:text-brand-orange transition-colors flex items-center gap-1">
-                            Dashboard
-                            <svg class="w-3.5 h-3.5 mb-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                        </a>
-                        <a href="product.html"
-                            class="px-5 py-2.5 text-sm font-medium text-white bg-brand-charcoal hover:bg-brand-orange rounded-full transition-colors shadow-lg hover:shadow-xl">Explore
-                            Hardware Logic</a>
-                    </div>
+    <!-- Sticky Navigation Bar -->
+    <nav class="fixed w-full z-50 transition-all duration-300 glass-panel" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <a href="index.html" class="flex items-center gap-2 group">
+                        <img src="assets/images/logo.svg" alt="Trigggr Logo"
+                            class="w-10 h-10 logo-white group-hover:opacity-80 transition-opacity">
+                        <span
+                            class="font-display font-bold text-2xl tracking-tight text-white group-hover:text-brand-orange transition-colors">Trigggr</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="architecture.html"
+                        class="text-sm font-medium text-gray-400 hover:text-brand-orange transition-colors">Architecture
+                        Logic</a>
+                    <a href="solutions.html"
+                        class="text-sm font-medium text-gray-400 hover:text-brand-orange transition-colors">Solutions</a>
+                    <a href="faq.html"
+                        class="text-sm font-medium text-gray-400 hover:text-brand-orange transition-colors">FAQ</a>
+                    <a href="index.html"
+                        class="text-sm font-medium text-gray-400 hover:text-brand-orange transition-colors">Home</a>
+                    <a href="product.html"
+                        class="px-5 py-2.5 text-sm font-medium text-brand-charcoal bg-white rounded-full cursor-default shadow-lg">Explore
+                        Hardware</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Product Purchase Section -->
-    <section class="relative min-h-[90vh] flex items-center pt-24 pb-12 overflow-hidden bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <!-- Image Side -->
-                <div class="relative reveal active group">
-                    <div
-                        class="aspect-square rounded-[2.5rem] bg-gray-50 border border-gray-100 shadow-xl overflow-hidden flex items-center justify-center p-8 transition-transform duration-500 group-hover:scale-[1.02]">
-                        <!-- Using placeholder for now -->
-                        <img src="https://placehold.co/800x800/1A1A1B/FFFFFF?text=Trigggr+Node\nHardware"
-                            alt="Trigggr Node Hardware"
-                            class="w-full h-full object-contain mix-blend-multiply opacity-90 transition-opacity duration-300 hover:opacity-100">
-                    </div>
-                    <!-- Decorative background element -->
-                    <div
-                        class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-brand-orange/5 to-transparent rounded-full blur-3xl">
+    <!-- Cinematic Video Scroll Section -->
+    <section id="video-section" class="relative w-full" style="height: 400vh;">
+        <!-- Pinned Container -->
+        <div class="sticky top-0 w-full h-[100dvh] overflow-hidden flex items-center justify-center bg-brand-charcoal">
+
+            <!-- Video Base -->
+            <video id="trigggr-video"
+                class="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto object-cover -translate-x-1/2 -translate-y-1/2 opacity-60"
+                muted playsinline preload="auto">
+                <source src="assets/videos/trigggr-explode.mp4" type="video/mp4">
+            </video>
+
+            <!-- Vignette overlay to isolate text -->
+            <div
+                class="absolute inset-0 bg-gradient-to-b from-brand-charcoal/60 via-brand-charcoal/20 to-brand-charcoal/80 pointer-events-none">
+            </div>
+
+            <!-- Overlays Container -->
+            <div
+                class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center text-center">
+
+                <!-- Initial Scroll Prompt Overlay -->
+                <div id="text-intro"
+                    class="absolute w-full left-0 right-0 flex flex-col items-center justify-center translate-y-0 opacity-100 pointer-events-none px-4">
+                    <h1 class="text-5xl md:text-7xl font-display font-bold text-white tracking-tight mb-4">Explore the
+                        <span class="text-brand-orange">Node</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-400 font-light max-w-xl mx-auto">Scroll to reveal the core
+                        of automated event-triggered video verification.</p>
+                    <div class="mt-12 p-3 rounded-full bg-white/5 border border-white/10 animate-bounce">
+                        <svg class="w-6 h-6 text-brand-orange" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                        </svg>
                     </div>
                 </div>
 
-                <!-- Product Details Side -->
-                <div class="space-y-8 reveal active delay-100">
-                    <div>
-                        <div class="flex items-center gap-3 mb-4">
-                            <span
-                                class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold uppercase tracking-wider">
-                                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                                In Stock
-                            </span>
-                            <span class="text-sm text-gray-500 font-medium">SKU: TGR-ND-001</span>
-                        </div>
-                        <h1 class="text-4xl md:text-5xl font-display font-bold text-brand-charcoal mb-4">
-                            Trigggr Node
-                        </h1>
-                        <p class="text-2xl font-light text-gray-500 mb-6">
-                            $299.00 <span class="text-sm text-gray-400">USD</span>
-                        </p>
-                        <p class="text-lg text-gray-600 leading-relaxed border-b border-gray-100 pb-8">
-                            The universal hardware bridge that captures instant video evidence from any Digital Signal
-                            or Software Flag. Convert physical actions into digital bookmarks mapping to your existing
-                            ONVIF camera network.
-                        </p>
-                    </div>
-
-                    <!-- Key Features Specs -->
-                    <div class="grid grid-cols-2 gap-4 py-4">
-                        <div class="flex items-center gap-3">
-                            <div
-                                class="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-brand-orange">
-                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-brand-charcoal text-sm">Zero Latency</h4>
-                                <p class="text-xs text-gray-500">Real-time processing</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div
-                                class="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-brand-orange">
-                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-brand-charcoal text-sm">ONVIF Ready</h4>
-                                <p class="text-xs text-gray-500">Universal camera support</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Purchase Actions -->
-                    <div class="pt-6 space-y-4">
-                        <div class="flex items-center gap-4">
-                            <div class="flex items-center border border-gray-200 rounded-full bg-white h-14">
-                                <button
-                                    class="px-5 text-gray-500 hover:text-brand-charcoal hover:bg-gray-50 rounded-l-full h-full transition-colors"
-                                    onclick="const input=this.nextElementSibling; if(input.value > 1) input.value--">-</button>
-                                <input type="number" value="1" min="1"
-                                    class="w-12 text-center font-medium outline-none text-brand-charcoal bg-transparent appearance-none">
-                                <button
-                                    class="px-5 text-gray-500 hover:text-brand-charcoal hover:bg-gray-50 rounded-r-full h-full transition-colors"
-                                    onclick="this.previousElementSibling.value++">+</button>
-                            </div>
-                            <button onclick="alert('Added to cart!');"
-                                class="flex-1 h-14 bg-brand-charcoal hover:bg-brand-orange text-white rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center gap-2">
-                                Add to Cart
-                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="flex items-center justify-center gap-2 text-sm text-gray-500 pt-2">
-                            <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                            </svg>
-                            Secure checkout powered by Stripe
-                        </div>
-                    </div>
+                <!-- Entity Rich Overlay 1 -->
+                <div id="text-1"
+                    class="absolute w-full left-0 right-0 flex items-center justify-center translate-y-10 opacity-0 pointer-events-none px-4">
+                    <h2 class="text-4xl md:text-6xl font-display font-bold text-white text-center leading-tight">
+                        Universal<br><span class="text-brand-orange drop-shadow-lg">Hardware Bridge</span>
+                    </h2>
                 </div>
+
+                <!-- Entity Rich Overlay 2 -->
+                <div id="text-2"
+                    class="absolute w-full left-0 right-0 flex items-center justify-center translate-y-10 opacity-0 pointer-events-none px-4">
+                    <h2 class="text-4xl md:text-6xl font-display font-bold text-white text-center leading-tight">
+                        Sub-15ms<br><span class="text-brand-orange drop-shadow-lg">Signal-to-Overlay Logic</span>
+                    </h2>
+                </div>
+
+                <!-- Entity Rich Overlay 3 -->
+                <div id="text-3"
+                    class="absolute w-full left-0 right-0 flex items-center justify-center translate-y-10 opacity-0 pointer-events-none px-4">
+                    <h2 class="text-4xl md:text-6xl font-display font-bold text-white text-center leading-tight">
+                        Zero-Integration<br><span class="text-brand-orange drop-shadow-lg">WMS Integrity</span>
+                    </h2>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-white border-t border-gray-200">
+    <!-- Pre-footer CTA -->
+    <section class="py-24 bg-brand-charcoal text-center border-t border-white/10 relative z-20">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-6">Built for scale. Bridged for truth.
+            </h2>
+            <p class="text-xl text-gray-400 mb-10">Integrate irrefutable truth into your shipping ecosystem today.</p>
+            <a href="solutions.html"
+                class="inline-flex items-center gap-2 px-8 py-4 text-white bg-brand-orange hover:bg-orange-600 rounded-full font-medium transition-all shadow-lg hover:shadow-orange-500/30">
+                View Integrated Solutions
+            </a>
+        </div>
+    </section>
+
+    <!-- Minimalist Footer -->
+    <footer class="bg-black text-gray-400 border-t border-white/5 relative z-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="col-span-1 md:col-span-2">
-                    <div class="flex items-center gap-2 mb-4">
-                        <img src="assets/images/logo.svg" alt="Trigggr Logo" class="w-8 h-8">
-                        <span class="font-display font-bold text-xl text-brand-charcoal">Trigggr</span>
-                    </div>
-                    <p class="text-gray-500 max-w-xs">
-                        Connecting the physical to the digital. The Hardware Bridge for modern logistics.
-                    </p>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <!-- Branding -->
+                <div class="flex items-center gap-2">
+                    <img src="assets/images/logo.svg" alt="Trigggr Logo" class="w-6 h-6 logo-white opacity-50">
+                    <span class="font-display font-bold text-lg text-gray-500">Trigggr</span>
                 </div>
-                <div>
-                    <h5 class="font-bold text-brand-charcoal mb-4">Product</h5>
-                    <ul class="space-y-2 text-sm text-gray-500">
-                        <li><a href="architecture.html" class="hover:text-brand-orange">Architecture Logic</a></li>
-                        <li><a href="solutions.html" class="hover:text-brand-orange">Solutions</a></li>
-                        <li><a href="faq.html" class="hover:text-brand-orange">FAQ</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="font-bold text-brand-charcoal mb-4">Company</h5>
-                    <ul class="space-y-2 text-sm text-gray-500">
-                        <li><a href="#" class="hover:text-brand-orange">About</a></li>
-                        <li><a href="#" class="hover:text-brand-orange">Contact</a></li>
-                        <li><a href="#" class="hover:text-brand-orange">Privacy</a></li>
-                    </ul>
+
+                <!-- Links -->
+                <div class="flex flex-wrap justify-center gap-8 text-sm font-medium">
+                    <a href="https://linkedin.com/company/trigggr" target="_blank" rel="noopener noreferrer"
+                        class="hover:text-brand-orange transition-colors">LinkedIn</a>
+                    <a href="architecture.html" class="hover:text-brand-orange transition-colors">Technical
+                        Documentation</a>
+                    <a href="faq.html" class="hover:text-brand-orange transition-colors">Support FAQ</a>
                 </div>
             </div>
-            <div class="border-t border-gray-100 mt-12 pt-8 text-center text-sm text-gray-400">
-                &copy; 2024 Trigggr, Inc. All rights reserved.
+
+            <!-- Copyright -->
+            <div class="mt-8 pt-8 border-t border-white/5 text-center text-xs opacity-60">
+                &copy; 2024 Trigggr, Inc. All rights reserved. Hub-and-Spoke.
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="script.js"></script>
+    <!-- Scripts: GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <script>
-        // Trigger reveal animations on load for this specific page (since it's at the top)
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                document.querySelectorAll('.reveal').forEach(el => el.classList.add('active'));
-            }, 100);
+        gsap.registerPlugin(ScrollTrigger);
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const video = document.getElementById("trigggr-video");
+
+            // GSAP Logic execution relies on video metadata being ready to calculate scrub limits
+            video.addEventListener("loadedmetadata", initScrollScrub);
+
+            // Fallback initialization if already loaded or fails to emit loadedmetadata
+            if (video.readyState >= 1) {
+                initScrollScrub();
+            }
+
+            function initScrollScrub() {
+                // Ensure double-init is prevented
+                if (video.dataset.init === "true") return;
+                video.dataset.init = "true";
+
+                // Ensure a safe duration fallback for animation calculation
+                // Browsers sometimes report Infinity for local video duration before fully loading
+                const duration = !isFinite(video.duration) || video.duration === 0 ? 10 : video.duration;
+
+                // --- ADJUST VIDEO END POINT ---
+                // Set 'videoEndPercentage' (e.g. 0.5 for 50%) to stop the video early and hide the end.
+                const videoEndPercentage = 0.5;
+                const maxVideoTime = duration * videoEndPercentage;
+
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: "#video-section",
+                        start: "top top",
+                        end: "bottom bottom",
+                        scrub: 1, // Smooth scrolling transition
+                        pin: false // Pin is handled natively via sticky CSS container
+                    }
+                });
+
+                // Link video playback to the scroll percentage, capping at our max time
+                tl.to(video, {
+                    currentTime: maxVideoTime,
+                    duration: 1,
+                    ease: "none"
+                }, 0);
+
+                // --- Overlays Setup ---
+                // Fade out intro hint early in the scroll
+                tl.to("#text-intro", { opacity: 0, y: -40, duration: 0.1, ease: "power1.inOut" }, 0);
+
+                // Reveal Overlay 1 (Approx 15% -> 35% mark)
+                tl.fromTo("#text-1",
+                    { opacity: 0, scale: 0.9, y: 30 },
+                    { opacity: 1, scale: 1, y: 0, duration: 0.05, ease: "power2.out" },
+                    0.15
+                ).to("#text-1", { opacity: 0, y: -30, duration: 0.05, ease: "power2.in" }, 0.35);
+
+                // Reveal Overlay 2 (Approx 45% -> 65% mark)
+                tl.fromTo("#text-2",
+                    { opacity: 0, scale: 0.9, y: 30 },
+                    { opacity: 1, scale: 1, y: 0, duration: 0.05, ease: "power2.out" },
+                    0.45
+                ).to("#text-2", { opacity: 0, y: -30, duration: 0.05, ease: "power2.in" }, 0.65);
+
+                // Reveal Overlay 3 (Approx 75% -> 95% mark)
+                tl.fromTo("#text-3",
+                    { opacity: 0, scale: 0.9, y: 30 },
+                    { opacity: 1, scale: 1, y: 0, duration: 0.05, ease: "power2.out" },
+                    0.75
+                ).to("#text-3", { opacity: 0, y: -30, duration: 0.05, ease: "power2.in" }, 0.95);
+            }
+
+            // Fire a load request immediately to jumpstart the meta process on browsers with restrictions
+            video.load();
         });
     </script>
 </body>
