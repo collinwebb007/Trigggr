@@ -18,6 +18,7 @@
 
     <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -198,37 +199,67 @@
                 </div>
 
                 <div class="relative lg:-mr-20 reveal delay-200">
-                    <!-- 3D Render Interactive Viewer -->
-                    <div id="stl-viewer"
-                        class="aspect-square rounded-3xl bg-white/50 border border-gray-200 shadow-xl relative overflow-hidden flex items-center justify-center group cursor-grab active:cursor-grabbing backdrop-blur-sm z-10">
-                        <div
-                            class="absolute inset-0 flex items-center justify-center text-gray-500 font-medium z-0 pointer-events-none">
-                            <div class="flex flex-col items-center gap-2">
-                                <svg class="w-8 h-8 animate-spin text-brand-orange" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                        stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor"
-                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                    </path>
-                                </svg>
-                                <span>Loading 3D Model...</span>
-                            </div>
+                    <!-- WMS-to-Video Simulator -->
+                    <div id="simulator-container" class="relative w-full aspect-[4/3] rounded-lg bg-[#1A1A1A] overflow-hidden border border-[#00FF41]/30 shadow-[0_0_20px_rgba(0,255,65,0.15)] group z-10 cursor-crosshair">
+                        
+                        <!-- Connecting Pulse Wire SVG -->
+                        <div class="absolute inset-0 z-10 pointer-events-none">
+                            <!-- Use precise vector paths syncing with 4:3 viewbox approximation (400x300) -->
+                            <svg width="100%" height="100%" viewBox="0 0 400 300" preserveAspectRatio="none">
+                                <!-- Static faint wire -->
+                                <path d="M 40 150 L 200 150 L 360 150" stroke="#FFFFFF" stroke-opacity="0.05" stroke-width="2" fill="none" />
+                                <!-- Active pulse wire (Left to Center) -->
+                                <path id="pulse-left" d="M 40 150 L 200 150" stroke="#00FF41" stroke-width="3" fill="none" stroke-dasharray="160" stroke-dashoffset="160" style="filter: drop-shadow(0 0 5px #00FF41);" />
+                                <!-- Active pulse wire (Center to Right) -->
+                                <path id="pulse-right" d="M 200 150 L 360 150" stroke="#00FF41" stroke-width="3" fill="none" stroke-dasharray="160" stroke-dashoffset="160" style="filter: drop-shadow(0 0 5px #00FF41);" />
+                            </svg>
                         </div>
+
+                        <!-- 3D Node Canvas -->
+                        <div id="node-3d-canvas" class="absolute inset-0 z-20 pointer-events-none"></div>
+
+                        <!-- Left Panel: WMS Input -->
+                        <div class="absolute left-6 top-1/2 -translate-y-1/2 w-[140px] border border-gray-700 bg-[#1A1A1A]/80 backdrop-blur-md p-3 rounded shadow-lg z-30 opacity-0 transform -translate-x-4" id="wms-console">
+                            <div class="flex items-center gap-2 border-b border-gray-700 pb-2 mb-2">
+                                <div class="w-2 h-2 rounded-full bg-red-500"></div>
+                                <div class="w-2 h-2 rounded-full bg-yellow-500"></div>
+                                <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                                <span class="text-[9px] text-white/50 font-mono tracking-wider">WMS.exe</span>
+                            </div>
+                            <div class="font-mono text-[10px] text-[#00FF41] leading-tight h-10" id="wms-text"></div>
+                        </div>
+
+                        <!-- Right Panel: Camera Output -->
+                        <div class="absolute right-6 top-1/2 -translate-y-1/2 w-[140px] border border-gray-700 bg-[#1A1A1A]/80 backdrop-blur-md p-3 rounded shadow-lg z-30 opacity-0 transform translate-x-4" id="camera-output">
+                            <div class="flex items-center justify-between border-b border-gray-700 pb-2 mb-2">
+                                <span class="text-[9px] text-white/50 font-mono tracking-wider">CAM-04</span>
+                                <div class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></div>
+                            </div>
+                            
+                            <!-- Video Wireframe -->
+                            <div class="w-full h-12 border border-gray-600 mb-2 relative overflow-hidden bg-gray-800/20">
+                                <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 8px 8px;"></div>
+                                <!-- Mock Person wireframe -->
+                                <div class="absolute top-1/2 left-[40%] -translate-x-1/2 -translate-y-1/2 w-3 h-5 border border-white/30 rounded-sm"></div>
+                                <!-- Box wireframe -->
+                                <div class="absolute bottom-1 left-[60%] w-5 h-3 border border-white/40 bg-gray-700/50"></div>
+                            </div>
+                            
+                            <!-- Timeline UI -->
+                            <div class="w-full h-1 bg-gray-700 relative rounded overflow-hidden">
+                                <div id="playhead" class="absolute top-0 left-0 bottom-0 w-1/2 bg-gray-500 transition-colors duration-200"></div>
+                                <!-- Bookmark Icon -->
+                                <div id="bookmark-icon" class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-1.5 h-3 bg-[#00FF41] shadow-[0_0_6px_#00FF41] opacity-0 scale-y-0 origin-bottom transition-all duration-300 z-10"></div>
+                            </div>
+                            <div class="font-mono text-[9px] text-[#00FF41] leading-tight mt-2 min-h-[24px]" id="camera-text"></div>
+                        </div>
+
+                        <!-- Hover Reveal Label -->
+                        <div id="hover-label" class="absolute top-[25%] left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#00FF41]/10 border border-[#00FF41]/50 px-3 py-1 rounded text-[#00FF41] text-[9px] font-mono tracking-widest opacity-0 pointer-events-none z-30 transition-opacity duration-300 shadow-[0_0_15px_rgba(0,255,65,0.2)]">
+                            UNIVERSAL HARDWARE BYPASS: &lt;15ms
+                        </div>
+
                     </div>
-                    <!-- Interaction Hint -->
-                    <div
-                        class="absolute bottom-4 right-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-full shadow border border-gray-100 text-xs font-medium text-gray-600 flex items-center gap-2 z-20 pointer-events-none">
-                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
-                        </svg>
-                        Drag to rotate
-                    </div>
-                    <!-- Decorative Elements -->
-                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-orange/10 rounded-full blur-3xl z-0">
-                    </div>
-                    <div class="absolute top-10 right-10 w-60 h-60 bg-brand-charcoal/5 rounded-full blur-3xl z-0"></div>
                 </div>
             </div>
         </div>
@@ -292,6 +323,92 @@
                     <h4 class="text-xl font-bold mb-3">Zero Latency</h4>
                     <p class="text-gray-600">Real-time processing ensures every scan is captured and synced with the
                         exact video frame.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="bg-brand-light relative py-24 border-t border-gray-200">
+        <style>
+            @keyframes wrapWireFlow {
+                to { stroke-dashoffset: 0; }
+            }
+            #wrapping-wire {
+                animation: wrapWireFlow 4s linear infinite;
+            }
+        </style>
+
+        <div class="text-center px-4 relative overflow-hidden mb-12">
+            <div class="max-w-4xl mx-auto reveal active">
+                <h2 class="text-xs font-bold text-brand-orange uppercase tracking-widest mb-4">Manual Verification Workflow</h2>
+                <h3 class="text-4xl md:text-5xl font-display font-bold mb-6 text-brand-charcoal">Preventing Costly Missing Item Claims.</h3>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Move from passive recording to active verification with the Trigggr Node’s Physical Button input.
+                </p>
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 relative">
+            
+            <!-- Wrapping SVG Wire Animation -->
+            <div class="absolute inset-0 z-0 hidden md:block pointer-events-none w-full h-full overflow-visible">
+                <svg width="100%" height="100%" viewBox="0 0 1000 300" preserveAspectRatio="none" class="absolute top-0 left-0 w-full h-[60%] mt-20">
+                    <!-- Base Wire -->
+                    <path d="M 160 100 C 330 100, 330 50, 500 50 C 670 50, 670 100, 830 100" fill="none" stroke="#E5E7EB" stroke-width="4" stroke-dasharray="8 8" />
+                    <!-- Animated Active Wire -->
+                    <path id="wrapping-wire" d="M 160 100 C 330 100, 330 50, 500 50 C 670 50, 670 100, 830 100" fill="none" stroke="#FF5733" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"
+                        style="filter: drop-shadow(0 0 8px rgba(255,87,51,0.6));"
+                        stroke-dasharray="1000" stroke-dashoffset="1000" />
+                </svg>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative mt-12 z-10">
+                
+                <!-- Column 1: Pack and Verify -->
+                <div class="bg-white border border-gray-200 p-8 rounded-3xl text-center shadow-sm hover:border-brand-orange transition-colors flex flex-col items-center reveal delay-100">
+                    <div class="w-full aspect-square max-w-[240px] mx-auto mb-8 rounded-2xl overflow-hidden shadow-inner group relative">
+                        <img src="assets/images/step_1_packing.png" alt="Employee packing high value goods" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h4 class="text-xl font-bold text-brand-charcoal mb-3">1. Pack and Verify.</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Employee places all high-value items into the shipping box.
+                    </p>
+                </div>
+
+                <!-- Column 2: Press the Button -->
+                <div class="bg-white border-2 border-brand-orange/30 p-8 rounded-3xl text-center shadow-lg transform md:-translate-y-4 flex flex-col items-center relative reveal delay-200">
+                    <div class="w-full aspect-square max-w-[240px] mx-auto mb-6 rounded-2xl overflow-hidden border border-brand-orange/40 shadow-[0_0_20px_rgba(255,87,51,0.1)] group relative">
+                        <img src="assets/images/step_2_button.png" alt="Hand pressing green industrial button" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-brand-orange/10 mix-blend-overlay animate-pulse"></div>
+                    </div>
+
+                    <div class="absolute -top-4 right-4 bg-white border border-brand-orange px-4 py-1.5 rounded-full text-xs font-mono text-brand-orange flex items-center gap-2 shadow-sm font-bold">
+                        <svg class="w-3 h-3 text-brand-orange animate-pulse" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg>
+                        Node Linked
+                    </div>
+
+                    <h4 class="text-xl font-bold text-brand-charcoal mb-3">2. Press the Button.</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Before sealing the box, the employee presses the button, sending a 'Dry Contact' signal to the Trigggr Node.
+                    </p>
+                </div>
+
+                <!-- Column 3: Instant Evidence -->
+                <div class="bg-white border border-gray-200 p-8 rounded-3xl text-center shadow-sm hover:border-brand-orange transition-colors flex flex-col items-center reveal delay-300">
+                    <div class="w-full aspect-square max-w-[240px] mx-auto mb-6 rounded-2xl overflow-hidden shadow-inner group relative">
+                        <img src="assets/images/step_3_evidence.png" alt="Video evidence uploading to cloud" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        
+                        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur px-3 py-1 rounded text-[10px] font-mono text-brand-charcoal border border-gray-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm">
+                            <div class="w-1.5 h-1.5 bg-brand-orange rounded-full animate-pulse"></div>
+                            <b>Evidence Tagged #1234</b>
+                        </div>
+                    </div>
+
+                    <h4 class="text-xl font-bold text-brand-charcoal mb-3">3. Create Instant Evidence.</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        The Node instantly triggers the camera to bookmark that precise moment, providing irrefutable proof for claim denial.
+                    </p>
                 </div>
             </div>
         </div>
@@ -419,98 +536,75 @@
     <!-- Scripts -->
     <script src="script.js"></script>
 
-    <!-- Three.js 3D Viewer Script -->
+    <!-- Three.js & GSAP Simulator Script -->
     <script type="module">
         import * as THREE from 'three';
         import { STLLoader } from 'three/addons/loaders/STLLoader.js';
-        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-        const container = document.getElementById('stl-viewer');
+        const container = document.getElementById('simulator-container');
         if (container) {
+            const canvasContainer = document.getElementById('node-3d-canvas');
             const scene = new THREE.Scene();
 
             const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-            camera.position.set(3, 3, 3);
+            camera.position.set(0, 0, 14);
 
             const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
             renderer.setSize(container.clientWidth, container.clientHeight);
             renderer.setPixelRatio(window.devicePixelRatio);
-            renderer.domElement.style.outline = 'none';
+            canvasContainer.appendChild(renderer.domElement);
 
-            const controls = new OrbitControls(camera, renderer.domElement);
-            controls.enableDamping = true;
-            controls.dampingFactor = 0.05;
-            controls.autoRotate = true;
-            controls.autoRotateSpeed = 2.0;
-            controls.enablePan = false;
-            controls.minDistance = 1;
-            controls.maxDistance = 500;
-
-            // Lighting setup for sleek metallic look
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
             scene.add(ambientLight);
 
-            const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
-            dirLight.position.set(10, 20, 10);
-            scene.add(dirLight);
+            // Central Glowing Pulse inside the Node
+            const pulseLight = new THREE.PointLight(0x00FF41, 0, 20);
+            pulseLight.position.set(0, 0, 0);
+            scene.add(pulseLight);
 
-            const backLight = new THREE.DirectionalLight(0xffffff, 0.5);
-            backLight.position.set(-10, -10, -10);
-            scene.add(backLight);
-
-            // Load the user's STL model
+            // Load STL
             const loader = new STLLoader();
+            let nodeMesh;
+            let group = new THREE.Group();
+            scene.add(group);
+
             loader.load('assets/models/trigggr-node.stl', (geometry) => {
-                // Clear loading state and inject canvas
-                container.innerHTML = '';
-                container.appendChild(renderer.domElement);
-
-                // Premium dark metallic material matches brand-charcoal
-                const material = new THREE.MeshStandardMaterial({
-                    color: 0x1A1A1B,
-                    roughness: 0.3,
-                    metalness: 0.7,
+                const material = new THREE.MeshBasicMaterial({
+                    color: 0xFFFFFF,
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.2
                 });
-
-                const mesh = new THREE.Mesh(geometry, material);
-
-                // Ensure proper normals for smooth shading
-                geometry.computeVertexNormals();
-
-                // Auto-center the model geometry
+                
                 geometry.computeBoundingBox();
                 const box = geometry.boundingBox;
                 const center = box.getCenter(new THREE.Vector3());
                 geometry.translate(-center.x, -center.y, -center.z);
 
-                // Auto-distance the camera to fit object properly without clipping
                 const size = box.getSize(new THREE.Vector3());
                 const maxDim = Math.max(size.x, size.y, size.z);
+                const scale = 5 / maxDim; // Fit nicely in center gap
 
-                // Normalize the model size to `10` to avoid clipping issues
-                const scale = 10 / maxDim;
-                mesh.scale.set(scale, scale, scale);
+                nodeMesh = new THREE.Mesh(geometry, material);
+                nodeMesh.scale.set(scale, scale, scale);
+                
+                // Tilt it slightly by default
+                nodeMesh.rotation.x = Math.PI / 6;
+                nodeMesh.rotation.y = -Math.PI / 4;
 
-                // Set camera position relative to normalized size
-                camera.position.set(8, 6, 12);
-                camera.lookAt(0, 0, 0);
-                controls.target.set(0, 0, 0);
-                controls.update();
+                group.add(nodeMesh);
+            }, undefined, () => {
+                // Fallback geometry if STL is missing so animation still works
+                const geom = new THREE.BoxGeometry(4, 2, 3);
+                const mat = new THREE.MeshBasicMaterial({ color: 0xFFFFFF, wireframe: true, transparent: true, opacity: 0.2 });
+                nodeMesh = new THREE.Mesh(geom, mat);
+                nodeMesh.rotation.x = Math.PI / 6;
+                nodeMesh.rotation.y = -Math.PI / 4;
+                group.add(nodeMesh);
+            });
 
-                // Safety fix for far plane
-                camera.near = 0.1;
-                camera.far = 1000;
-                camera.updateProjectionMatrix();
-
-                scene.add(mesh);
-            },
-                undefined,
-                (error) => {
-                    console.warn('STL file missing. Put trigggr-node.stl in assets/models/');
-                    container.innerHTML = '<div class="absolute inset-0 flex flex-col items-center justify-center text-gray-500 font-medium text-center bg-gray-50 m-4 rounded-2xl border-2 border-dashed border-gray-300 pointer-events-auto"><svg class="w-10 h-10 text-gray-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg><p class="text-sm">Renderer Ready.<br>Place your file at:</p><code class="text-brand-orange bg-orange-50 px-2 py-1 rounded mt-2 inline-block shadow-sm">assets/models/trigggr-node.stl</code></div>';
-                });
-
-            // Handle browser resize
+            // Handle Resize
             window.addEventListener('resize', () => {
                 if (container.clientWidth > 0) {
                     camera.aspect = container.clientWidth / container.clientHeight;
@@ -519,13 +613,107 @@
                 }
             });
 
-            // Animation loop
+            // 2.5D Tilt Interaction on mouse move
+            let targetRotationX = 0;
+            let targetRotationY = 0;
+            const hoverLabel = document.getElementById('hover-label');
+
+            container.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+                const y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+                
+                targetRotationY = x * 0.4; // 2.5D tilt depth
+                targetRotationX = y * 0.4;
+            });
+
+            container.addEventListener('mouseenter', () => {
+                if(hoverLabel) hoverLabel.style.opacity = '1';
+                gsap.to(container, { boxShadow: '0 0 30px rgba(0,255,65,0.3)', duration: 0.3 });
+            });
+            container.addEventListener('mouseleave', () => {
+                targetRotationX = 0;
+                targetRotationY = 0;
+                if(hoverLabel) hoverLabel.style.opacity = '0';
+                gsap.to(container, { boxShadow: '0 0 20px rgba(0,255,65,0.15)', duration: 0.3 });
+            });
+
+            // Animation Loop
             function animate() {
                 requestAnimationFrame(animate);
-                controls.update();
+                // Ease rotation for smooth 2.5D
+                group.rotation.x += (targetRotationX - group.rotation.x) * 0.1;
+                group.rotation.y += (targetRotationY - group.rotation.y) * 0.1;
+                
+                if(nodeMesh) {
+                    nodeMesh.rotation.y += 0.002; // Gentle idle spin
+                }
+                
                 renderer.render(scene, camera);
             }
             animate();
+
+            // GSAP Event Simulator Sequence (5s Loop)
+            const wmsConsole = document.getElementById('wms-console');
+            const wmsText = document.getElementById('wms-text');
+            const pulseLeft = document.getElementById('pulse-left');
+            const pulseRight = document.getElementById('pulse-right');
+            const cameraOutput = document.getElementById('camera-output');
+            const cameraText = document.getElementById('camera-text');
+            const playhead = document.getElementById('playhead');
+            const bookmarkIcon = document.getElementById('bookmark-icon');
+
+            // Fast typewriter utility
+            function typeText(element, textHtml) {
+                element.innerHTML = '';
+                // Since text contains HTML (<br/>), we inject it directly sequentially for simplicity, 
+                // but a true typewriter handles DOM nodes. For this fast pulse, direct injection is better.
+                // Simple fast fade-in instead of per-character to simulate fast terminal print
+                element.innerHTML = textHtml;
+                gsap.fromTo(element, {opacity: 0}, {opacity: 1, duration: 0.2});
+            }
+
+            const tl = gsap.timeline({ repeat: -1 });
+
+            // 0.0s: Reset State
+            tl.set(wmsConsole, { opacity: 0, x: -16 })
+              .set(cameraOutput, { opacity: 0, x: 16 })
+              .set(pulseLeft, { strokeDashoffset: 160 })
+              .set(pulseRight, { strokeDashoffset: 160 })
+              .set(playhead, { backgroundColor: '#6B7280' })
+              .set(bookmarkIcon, { opacity: 0, scaleY: 0 })
+              .set(wmsText, { innerHTML: '' })
+              .set(cameraText, { innerHTML: '' })
+              .set(pulseLight, { intensity: 0 })
+              
+              // 0.0s - 1.5s: Gentle idle pulse
+              .to(pulseLight, { intensity: 1.0, duration: 1.5, yoyo: true, repeat: 1, ease: 'sine.inOut' }, 0)
+
+              // 0.5s: Target Event Input (WMS UI fades in early to simulate order drop)
+              .to(cameraOutput, { opacity: 1, x: 0, duration: 0.4, ease: 'power2.out' }, 0.5)
+
+              // 1.5s: WMS Console Appears & Prints Scan
+              .to(wmsConsole, { opacity: 1, x: 0, duration: 0.3, ease: 'power2.out' }, 1.5)
+              .call(() => typeText(wmsText, '[SYSTEM]<br/>ORDER ID: #301<br/>- SCANNED'), null, 1.8)
+              
+              // 2.2s: Ping Left to Center (Fast expo.in)
+              .to(pulseLeft, { strokeDashoffset: 0, duration: 0.2, ease: 'expo.in' }, 2.2)
+              
+              // Node flares up as it processes the signal
+              .to(pulseLight, { intensity: 4, duration: 0.05 }, 2.4)
+              .to(pulseLight, { intensity: 0.5, duration: 0.4 }, 2.45)
+              
+              // Ping Center to Right (Fast expo.out)
+              .to(pulseRight, { strokeDashoffset: 0, duration: 0.2, ease: 'expo.out' }, 2.4)
+
+              // 2.6s: Video Bookmark lands EXACTLY when pulse hits right
+              .to(playhead, { backgroundColor: '#00FF41', duration: 0.1 }, 2.6)
+              .to(bookmarkIcon, { opacity: 1, scaleY: 1, duration: 0.2, ease: 'back.out(1.7)' }, 2.6)
+              .call(() => typeText(cameraText, '[VERIFIED]<br/>EVENT LOG #301<br/>- TIMESTAMPED'), null, 2.7)
+              
+              // Fade out to loop at 4.5s
+              .to([wmsConsole, cameraOutput], { opacity: 0, duration: 0.5 }, 4.5)
+              .to([pulseLeft, pulseRight], { opacity: 0, duration: 0.3 }, 4.5);
         }
     </script>
 </body>
